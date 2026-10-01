@@ -11,8 +11,8 @@ const PROJECTS = [
     description:
       "A modern portfolio showcasing my skills, experience, and full-stack projects. Built with a focus on clean design, performance, and responsive user experiences.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion","Node.js","MongoDB"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://pranjali-portfolio-liart.vercel.app/",
+    githubUrl: "https://github.com/pranjalimaske-arc",
   },
   {
     number: "02",

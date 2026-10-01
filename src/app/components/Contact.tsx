@@ -7,8 +7,42 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
+import { useState } from "react";
+
+const WHATSAPP_NUMBER = "917066404575";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { name, email, subject, message } = formData;
+    const whatsappMessage = `Hello, my name is ${name || "Visitor"}.\nEmail: ${
+      email || "Not provided"
+    }\nSubject: ${subject || "Not provided"}\n\nMessage:\n${
+      message || "No message provided"
+    }`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section
       id="contact"
@@ -18,7 +52,6 @@ export default function Contact() {
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-[#38BDF8]/10 blur-[130px]" />
 
       <div className="relative mx-auto max-w-[1450px]">
-
         {/* ================= HEADER ================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,13 +70,10 @@ export default function Contact() {
               Connect.
             </span>
           </h2>
-
-          
         </motion.div>
 
         {/* ================= CONTACT GRID ================= */}
         <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-
           {/* ================= CONTACT INFO ================= */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -70,7 +100,7 @@ export default function Contact() {
                 <p className="text-xs text-[#8B949E]">Email</p>
 
                 <a
-                  href="mailto:your@email.com"
+                  href="mailto:pranjalimaske616@gmail.com"
                   className="text-sm font-medium text-white transition hover:text-[#38BDF8]"
                 >
                   pranjalimaske616@gmail.com
@@ -88,7 +118,7 @@ export default function Contact() {
                 <p className="text-xs text-[#8B949E]">Phone</p>
 
                 <a
-                  href="tel:+910000000000"
+                  href="tel:+917066404575"
                   className="text-sm font-medium text-white transition hover:text-[#38BDF8]"
                 >
                   +91 70664 04575
@@ -118,10 +148,9 @@ export default function Contact() {
               </p>
 
               <div className="flex items-center gap-3">
-
                 {/* ================= GITHUB ================= */}
                 <a
-                  href="#"
+                  href=" https://github.com/pranjalimaske-arc"
                   aria-label="GitHub"
                   className="group flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-[#8B949E] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/10 hover:text-[#38BDF8]"
                 >
@@ -136,7 +165,7 @@ export default function Contact() {
 
                 {/* ================= LINKEDIN ================= */}
                 <a
-                  href="#"
+                  href="https://linkedin.com/in/pranjali-maske-b4492b35b"
                   aria-label="LinkedIn"
                   className="group flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-[#8B949E] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/10 hover:text-[#38BDF8]"
                 >
@@ -151,7 +180,9 @@ export default function Contact() {
 
                 {/* ================= WHATSAPP ================= */}
                 <a
-                  href="#"
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label="WhatsApp"
                   className="group flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-[#8B949E] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/10 hover:text-[#38BDF8]"
                 >
@@ -165,7 +196,6 @@ export default function Contact() {
                     <path d="M12.004 2C6.48 2 2 6.477 2 12c0 1.762.46 3.415 1.267 4.852L2 22l5.28-1.235A9.94 9.94 0 0 0 12.004 22C17.523 22 22 17.523 22 12S17.523 2 12.004 2Zm0 18.18a8.16 8.16 0 0 1-4.16-1.14l-.298-.177-3.135.733.746-3.058-.194-.314A8.17 8.17 0 1 1 12.004 20.18Z" />
                   </svg>
                 </a>
-
               </div>
             </div>
           </motion.div>
@@ -178,19 +208,15 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm sm:p-7"
           >
-            <h3 className="text-xl font-bold text-white">
-              Send Me a Message
-            </h3>
+            <h3 className="text-xl font-bold text-white">Send Me a Message</h3>
 
             <p className="mt-2 text-sm text-[#8B949E]">
               Fill out the form and I&apos;ll get back to you.
             </p>
 
-            <form className="mt-6 space-y-4">
-
+            <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
               {/* Name + Email */}
               <div className="grid gap-4 sm:grid-cols-2">
-
                 <div>
                   <label
                     htmlFor="name"
@@ -201,7 +227,10 @@ export default function Contact() {
 
                   <input
                     id="name"
+                    name="name"
                     type="text"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Enter your name"
                     className="w-full rounded-lg border border-white/10 bg-[#0D1117] px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-[#6E7681] focus:border-[#38BDF8]/60 focus:ring-1 focus:ring-[#38BDF8]/20"
                   />
@@ -217,12 +246,14 @@ export default function Contact() {
 
                   <input
                     id="email"
+                    name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="you@example.com"
                     className="w-full rounded-lg border border-white/10 bg-[#0D1117] px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-[#6E7681] focus:border-[#38BDF8]/60 focus:ring-1 focus:ring-[#38BDF8]/20"
                   />
                 </div>
-
               </div>
 
               {/* Subject */}
@@ -236,7 +267,10 @@ export default function Contact() {
 
                 <input
                   id="subject"
+                  name="subject"
                   type="text"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="What would you like to discuss?"
                   className="w-full rounded-lg border border-white/10 bg-[#0D1117] px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-[#6E7681] focus:border-[#38BDF8]/60 focus:ring-1 focus:ring-[#38BDF8]/20"
                 />
@@ -253,7 +287,10 @@ export default function Contact() {
 
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Tell me about your project..."
                   className="w-full resize-none rounded-lg border border-white/10 bg-[#0D1117] px-3.5 py-2.5 text-sm text-white outline-none transition placeholder:text-[#6E7681] focus:border-[#38BDF8]/60 focus:ring-1 focus:ring-[#38BDF8]/20"
                 />
@@ -265,13 +302,11 @@ export default function Contact() {
                 className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#38BDF8] to-[#3B82F6] px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#38BDF8]/20"
               >
                 Send Message
-
                 <ArrowUpRight
                   size={16}
                   className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 />
               </button>
-
             </form>
           </motion.div>
         </div>

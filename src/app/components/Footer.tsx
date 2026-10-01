@@ -103,7 +103,7 @@ export default function Footer() {
 
     {/* Email */}
     <a
-      href="mailto:your@email.com"
+      href="mailto:pranjalimaske616@gmail.com"
       className="group flex items-center gap-3.5 text-sm text-[#8B949E] transition-colors duration-300 hover:text-white"
     >
       <Mail
@@ -117,7 +117,7 @@ export default function Footer() {
 
     {/* Phone */}
     <a
-      href="tel:+910000000000"
+      href="tel:+917066404575"
       className="group flex items-center gap-3 text-sm text-[#8B949E] transition-colors duration-300 hover:text-white"
     >
       <Phone
@@ -149,7 +149,7 @@ export default function Footer() {
 
     {/* GitHub */}
     <a
-      href="#"
+      href="https://github.com/pranjalimaske-arc"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="GitHub"
@@ -166,7 +166,7 @@ export default function Footer() {
 
     {/* LinkedIn */}
     <a
-      href="#"
+      href="https://www.linkedin.com/in/pranjali-maske-b4492b35b"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="LinkedIn"
@@ -183,9 +183,7 @@ export default function Footer() {
 
     {/* WhatsApp */}
     <a
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="https://wa.me/917066404575"
       aria-label="WhatsApp"
       className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-[#8B949E] transition-all duration-300 hover:-translate-y-1 hover:border-[#38BDF8]/40 hover:bg-[#38BDF8]/10 hover:text-[#38BDF8]"
     >
